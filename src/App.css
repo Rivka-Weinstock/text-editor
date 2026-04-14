@@ -1,0 +1,312 @@
+/* 🎨 עיצוב כללי */
+body, html, #root {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden; /* 🚫 אין גלילות */
+  background: linear-gradient(180deg, #fffdf9 0%, #f6ede4 100%);
+  font-family: "Segoe UI", sans-serif;
+  color: #3e2c1c;
+}
+
+.appContainer {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* 🔸 סרגל עליון */
+.topBar{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 10px 16px;
+  background: #8b5a2b;
+  /* background:  #a06c3a; */
+  color: white;
+  gap: 10px;
+}
+
+.topBar button , .userDiv button {
+  background: #fffdf8;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.25s ease;
+  margin-left: 13px;
+  margin-top: px;
+
+}
+
+.topBar button:hover {
+  background: #f2e2cf;
+  transform: translateY(-1px);
+}
+
+/* 🔸 אזור הקבצים */
+.fileArea {
+  flex: 1;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: stretch;
+  padding: 12px;
+  gap: 12px;
+  overflow: hidden; /* 🚫 אין גלילה */
+  transition: all 0.3s ease-in-out;
+}
+
+.textboxDiv {
+  flex: 1 1 calc(100% - 20px);
+  border: 3px solid #d6bfa7;
+  border-radius: 12px;
+  padding: 10px 14px;
+  box-shadow: 0 2px 6px rgba(80, 60, 40, 0.2);
+  background: #fffaf7;
+  display: flex;
+  flex-direction: row;
+  transition: all 0.35s ease-in-out;
+  position: relative;
+  opacity: 0.95;
+  animation: fadeIn 0.5s ease;
+  overflow: hidden;
+}
+
+.textboxDiv.active {
+  flex-direction: column;
+
+  border: 4px solid #8b5a2b;
+  box-shadow: 0 0 12px rgba(139, 90, 43, 0.5);
+  transform: scale(1.02);
+  opacity: 1;
+}
+
+/* 📝 כדי שלא תהיה ירידת שורה אחרי כל אות */
+.textboxDiv span {
+  display: inline; /* שומר את הטקסט באותה שורה */
+  white-space: pre-wrap;
+}
+
+.textboxDiv .title {
+  font-weight: bold;
+  font-size: 1.1em;
+  color: #6b4226;
+}
+
+.textboxDiv .meta {
+  font-size: 0.9em;
+  color: #9d7c63;
+}
+
+.textboxDiv .fileButtons {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 6px;
+  margin-top: 6px;
+}
+
+.fileButtons button {
+  background: linear-gradient(180deg, #a06c3a, #8b5a2b);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 6px 10px;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(90, 60, 30, 0.3);
+  transition: all 0.25s ease;
+}
+
+.fileButtons button:hover {
+  background: linear-gradient(180deg, #b27b46, #9b6430);
+  transform: translateY(-1px);
+}
+
+/* 📏 שינוי גודל בהתאם למספר הקבצים */
+.fileArea:has(.textboxDiv:nth-child(2)) .textboxDiv {
+  flex: 1 1 calc(50% - 20px);
+}
+.fileArea:has(.textboxDiv:nth-child(3)) .textboxDiv {
+  flex: 1 1 calc(33.3% - 20px);
+}
+.fileArea:has(.textboxDiv:nth-child(4)) .textboxDiv {
+  flex: 1 1 calc(25% - 20px);
+}
+
+/* ✨ אזור תחתון - שלושה חלקים */
+.bottomBar {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  gap: 10px;
+  background: linear-gradient(180deg, #f4ebe4 0%, #efe4db 100%);
+  padding: 12px;
+  border-top: 3px solid #d6bfa7;
+  box-shadow: 0 -2px 8px rgba(80, 60, 40, 0.15);
+  align-items: start;
+}
+
+/* 🎛️ כלי עיצוב */
+.StyleDiv {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background: #fff;
+  border: 2px solid #c8b09a;
+  border-radius: 12px;
+  padding: 12px 10px;
+  box-shadow: inset 0 1px 4px rgba(60, 40, 20, 0.1);
+}
+
+/* ➕ כלי הצבע וההחלפה בשורה אחת ומרווחים מדויקים */
+.StyleDiv .colorAndReplace {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+
+.StyleDiv label {
+  font-size: 0.9em;
+  color: #6b4226;
+  font-weight: 600;
+}
+
+.StyleDiv select,
+.StyleDiv input[type="color"],
+.StyleDiv input[type="text"],
+.StyleDiv button {
+  border-radius: 6px;
+  border: 1px solid #bba18c;
+  padding: 6px 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 0.9em;
+}
+
+.StyleDiv input[type="color"] {
+  width: 40px;
+  height: 30px;
+  border-radius: 8px;
+  padding: 0;
+}
+
+.StyleDiv button:hover {
+  background: #f2e0cc;
+}
+
+/* 🧭 כלי פעולה */
+.actionsDiv {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background: #fff;
+  border: 2px solid #c8b09a;
+  border-radius: 12px;
+  padding: 12px;
+  box-shadow: inset 0 1px 4px rgba(60, 40, 20, 0.1);
+}
+
+.actionsDiv button, .forAllBtn {
+  background: linear-gradient(180deg, #8b5a2b, #a06c3a);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 8px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  box-shadow: 0 2px 5px rgba(90, 60, 30, 0.3);
+}
+
+.actionsDiv button:hover {
+  background: linear-gradient(180deg, #b27b46, #9b6430);
+  transform: translateY(-1px);
+}
+
+.actionsDiv input {
+  border: 1px solid #bba18c;
+  border-radius: 6px;
+  padding: 5px;
+}
+
+/* 🎹 מקלדת */
+.keyboardDiv {
+  background-color: #e9d8c6;
+  border-radius: 18px;
+  padding: 15px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid #c7ad94;
+}
+
+.keyboardDiv div {
+  display: flex;
+  justify-content: center;
+  margin: 4px 0;
+}
+
+.keyboardDiv button {
+  background: white;
+  border: 1px solid #c7ad94;
+  border-radius: 6px;
+  padding: 8px 12px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  width: 42px;           
+  height: 42px;
+  margin: 2px;
+}
+
+button:hover {
+  background-color: #f0f2f8;
+  transform: translateY(-2px);
+}
+
+button:active {
+  background-color: #dde4f2;
+  transform: translateY(1px);
+}
+
+button.specialButtons {
+  width: 90px;
+}
+
+button.space {
+  width: 230px;
+}
+
+/* ✨ אנימציה */
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.98); }
+  to { opacity: 1; transform: scale(1); }
+}
+button{
+  color: #000000;
+
+}
+.colorButton{
+  width: 50px;
+  height: 50px;
+  margin: 2px;
+}
+.userDiv{
+    display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 10px 16px;
+  background: #8b5a2b;
+  /* background:  #a06c3a; */
+  color: white;
+  gap: 10px;
+}
+.userDiv input{
+  border: 1px solid #bba18c;
+  margin-left: 25px;
+  width: 250px;
+  border-radius: 6px;
+  padding: 12px;
+}
